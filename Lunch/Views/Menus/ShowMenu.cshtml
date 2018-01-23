@@ -1,0 +1,52 @@
+﻿@model Lunch.Models.Menu
+
+@{
+    ViewBag.Title = "ShowMenu";
+}
+
+<h2>ShowMenu</h2>
+
+<div>
+    <h4>Menu</h4>
+    <hr />
+    @if (Model != null)
+    {
+     <h4> @ViewBag.MenuStatus</h4>
+    <hr />
+     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstChoice.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstChoice.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondChoice.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondChoice.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Book", "Create", "Bookings") |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    }
+    else
+    {
+        <h4> @ViewBag.MenuStatus</h4>
+    }
+</div>

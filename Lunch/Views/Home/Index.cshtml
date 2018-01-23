@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row container body-content">
+    <div class="col-md-12">
+        <img src="~/Content/Images/HomeBanner.jpg" class="img-responsive" style="width:100%"/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4" style="display:table-cell; vertical-align:middle;text-align:center">
+        <div><img style="width:100%" src="~/Content/Images/logo.png"/></div>
+        <div><a class="btn btn-primary btn-block" href=@Url.Action("ShowMenu","Menus")>Menu for today &raquo;</a></div>
+
+    </div>
+    <div class="col-md-4" style="display:table-cell; vertical-align:middle;text-align:center">
+        <img style="width:100%" src="~/Content/Images/logo.png"/>
+        <p><a class="btn btn-primary btn-block" href=@Url.Action("Create","Bookings")>Book Now &raquo;</a></p>
+    </div>
+    <div class="col-md-4" style="display:table-cell; vertical-align:middle;text-align:center">
+        <img style="width:100%" src="~/Content/Images/logo.png" />
+        <p><a class="btn btn-primary btn-block" href=@Url.Action("MyBookings","Bookings")>My Bookings &raquo;</a></p>
+    </div>
+</div>

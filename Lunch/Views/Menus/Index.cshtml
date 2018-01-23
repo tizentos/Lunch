@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Lunch.Models.Menu>
+
+@{
+    ViewBag.Title = "Menu";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add Menu", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstChoice.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondChoice.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstChoice.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondChoice.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        @if (item.Date.Day < DateTime.Now.Day)
+        {
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+        </td>
+
+        }
+        else
+        {
+            <td>
+                @Html.ActionLink("Book", "Create", "Bookings")|
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        }
+    </tr>
+}
+
+</table>
