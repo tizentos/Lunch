@@ -27,7 +27,7 @@ namespace Lunch
         }
         private async Task configSendGridasync(IdentityMessage message)
         {
-            var apiKey = "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";
+            var apiKey = "SEND_GRID_APIKEY";
             var client = new SendGridClient(apiKey);
             var myMessage = new SendGridMessage()
             {
