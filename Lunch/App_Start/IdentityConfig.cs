@@ -11,15 +11,38 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Lunch.Models;
+using SendGrid;
+using System.Net.Mail;
+using SendGrid.Helpers.Mail;
 
 namespace Lunch
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            await configSendGridasync(message);
+           // return Task.FromResult(0);
+        }
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var myMessage = new SendGridMessage()
+            {
+                From = new EmailAddress("admin@lunchbook.com", "Lunch Book Team"),
+                Subject = message.Subject,
+                PlainTextContent = message.Body,
+                HtmlContent = message.Body
+            };
+            myMessage.AddTo(message.Destination);
+            // myMessage.From = new EmailAddress("admin@lunchbook.com", "Lunch Book Team");
+            //myMessage.Subject = message.Subject;
+            //myMessage.PlainTextContent = message.Body;
+            //myMessage.HtmlContent = message.Body;
+            //var response = await client.SendEmailAsync(myMessage);
+            var response = await client.SendEmailAsync(myMessage);
         }
     }
 
