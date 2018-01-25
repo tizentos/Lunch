@@ -66,8 +66,8 @@ namespace Lunch
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "90574910306-rcla26nrf359glbs3av4n8egau17a7fv.apps.googleusercontent.com",
-                ClientSecret = "y80QCkAND2H_KTv6hQtUY7kn"
+                ClientId = "1047061546700-shg44mji16a3r86gal9g821rtre8puh9.apps.googleusercontent.com",
+                ClientSecret = "wSKhXZT_HjSEMgngi9XzM53p"
             });
         }
     }
