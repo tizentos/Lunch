@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lunch.Models;
 using Microsoft.AspNet.Identity;
+using System.Collections;
 
 namespace Lunch.Controllers
 {
@@ -60,10 +61,21 @@ namespace Lunch.Controllers
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            
             CurrentMenu = db.Menu.Include(m => m.FirstChoice).Include(m => m.SecondChoice).ToList().Last();
-            List<Food> MenuFoodList = new List<Food>() { CurrentMenu.FirstChoice, CurrentMenu.SecondChoice };
-            ViewBag.FoodChoiceId = new SelectList(MenuFoodList, "Id", "Name");
+            IList MenuFoodList;
+            //15 Minute logic
+            if (CurrentMenu.Date.Minute + 15 >= DateTime.Now.Minute)
+            {
+                MenuFoodList = new List<Food>() { CurrentMenu.FirstChoice, CurrentMenu.SecondChoice };
+                ViewBag.FoodChoiceId = new SelectList(MenuFoodList, "Id", "Name");
+                ViewBag.Status = "intime";
+            }
+            else
+            {
+                MenuFoodList = new List<Food>();
+                ViewBag.FoodChoiceId = new SelectList(MenuFoodList, "Id", "Name");
+                ViewBag.Status = "Menu has not been set, check back later";
+            }
             return View();
         }
 

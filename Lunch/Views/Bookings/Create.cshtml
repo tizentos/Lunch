@@ -4,13 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create Booking</h2>
+<h2>Place your booking</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
+@{ 
+    if (ViewBag.Status == "intime")
+    {
+        using (Html.BeginForm())
+        {
+             @Html.AntiForgeryToken()
+
     <div class="form-horizontal">
         <h4>Booking</h4>
         <hr />
@@ -18,7 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FoodChoiceId, "FoodChoiceId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("FoodChoiceId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Food Choice", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.FoodChoiceId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,8 +45,13 @@
             </div>
         </div>
     </div>
+        }
+    }
+    else
+    {
+        <h1>@ViewBag.Status</h1>
+    }
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

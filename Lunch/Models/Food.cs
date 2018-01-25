@@ -20,6 +20,7 @@ namespace Lunch.Models
     }
     public class AddFoodViewModel
     {
+        [Required]
         [Display(Name = "Meal", Description = "Enter the meal")]
         [StringLength(50,ErrorMessage ="Text is too long")]
         public string Name { get; set; }

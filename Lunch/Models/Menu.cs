@@ -20,8 +20,10 @@ namespace Lunch.Models
     }
     public class AddMenuViewModel
     {
+        [Required]
         [Display(Name="First Meal")]
         public virtual int FirstChoiceId { get; set; }
+        [Required]
         [Display(Name ="Second Meal")]
         public virtual int SecondChoiceId { get; set; }
 
